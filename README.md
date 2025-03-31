@@ -49,8 +49,8 @@ This repository demonstrates an **Employee Management API** built with **.NET Co
 
 ### 1️⃣ Clone the Repository
 ```sh
-git clone https://github.com/yourusername/EmployeeManagementAPI.git
-cd EmployeeManagementAPI
+git clone https://github.com/raghusami/EmployeeManagement.API.git
+cd EmployeeManagement.API
 ```
 
 ### 2️⃣ Configure the Database  
@@ -193,11 +193,9 @@ app.Run();
 
 ---
 
-## 📢 Contributing  
-- Fork this repository  
-- Create a new branch (`git checkout -b feature-branch`)  
-- Commit your changes (`git commit -m "Add new feature"`)  
-- Push to the branch (`git push origin feature-branch`)  
-- Open a Pull Request  
+## ⭐ Star the Repository!
+If you find this project useful, **give it a star ⭐ on GitHub!**
 
-🌟 **Star this repository if you found it helpful!** 🚀
+---
+📌 **Created by [Raghu](https://github.com/raghusami)**
+
