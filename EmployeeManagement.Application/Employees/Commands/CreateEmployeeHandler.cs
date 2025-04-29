@@ -1,14 +1,14 @@
 ﻿using EmployeeManagement.Domain.Entities;
-using EmployeeManagement.Infrastructure.Repositories;
+using EmployeeManagement.Domain.Interfaces;
 using MediatR;
 
 namespace EmployeeManagement.Application.Employees.Commands
 {
     public class CreateEmployeeHandler : IRequestHandler<CreateEmployeeCommand, Guid>
     {
-        private readonly EmployeeRepository _repository;
+        private readonly IGenericRepository<Employee> _repository;
 
-        public CreateEmployeeHandler(EmployeeRepository repository)
+        public CreateEmployeeHandler(IGenericRepository<Employee> repository)
         {
             _repository = repository;
         }

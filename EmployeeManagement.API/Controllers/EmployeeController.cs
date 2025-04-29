@@ -1,5 +1,6 @@
 ﻿using EmployeeManagement.Application.Employees.Commands;
 using EmployeeManagement.Application.Employees.Queries;
+using FluentValidation;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
@@ -35,8 +36,14 @@ namespace EmployeeManagement.API.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Create([FromBody] CreateEmployeeCommand command)
+        public async Task<IActionResult> Create([FromBody] CreateEmployeeCommand command, [FromServices] IValidator<CreateEmployeeCommand> validator)
         {
+            var validationResult = await validator.ValidateAsync(command);
+
+            if (!validationResult.IsValid)
+            {
+                return BadRequest(validationResult.Errors.Select(e => e.ErrorMessage));
+            }
             var id = await _mediator.Send(command);
             return CreatedAtAction(nameof(GetById), new { id }, id);
         }

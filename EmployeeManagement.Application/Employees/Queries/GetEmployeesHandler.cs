@@ -1,14 +1,14 @@
 ﻿using EmployeeManagement.Domain.Entities;
-using EmployeeManagement.Infrastructure.Repositories;
+using EmployeeManagement.Domain.Interfaces;
 using MediatR;
 
 namespace EmployeeManagement.Application.Employees.Queries
 {
     public class GetEmployeesHandler : IRequestHandler<GetEmployeesQuery, List<Employee>>
     {
-        private readonly EmployeeRepository _repository;
+        private readonly IGenericRepository<Employee> _repository;
 
-        public GetEmployeesHandler(EmployeeRepository repository)
+        public GetEmployeesHandler(IGenericRepository<Employee> repository)
         {
             _repository = repository;
         }

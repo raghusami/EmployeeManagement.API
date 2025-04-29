@@ -1,13 +1,14 @@
-﻿using EmployeeManagement.Infrastructure.Repositories;
+﻿using EmployeeManagement.Domain.Entities;
+using EmployeeManagement.Domain.Interfaces;
 using MediatR;
 
 namespace EmployeeManagement.Application.Employees.Commands
 {
     public class UpdateEmployeeHandler : IRequestHandler<UpdateEmployeeCommand, bool>
     {
-        private readonly EmployeeRepository _repository;
+        private readonly IGenericRepository<Employee> _repository;
 
-        public UpdateEmployeeHandler(EmployeeRepository repository)
+        public UpdateEmployeeHandler(IGenericRepository<Employee> repository)
         {
             _repository = repository;
         }

@@ -1,13 +1,14 @@
-﻿using EmployeeManagement.Infrastructure.Repositories;
+﻿using EmployeeManagement.Domain.Entities;
+using EmployeeManagement.Domain.Interfaces;
 using MediatR;
 
 namespace EmployeeManagement.Application.Employees.Commands
 {
     public class DeleteEmployeeHandler : IRequestHandler<DeleteEmployeeCommand, bool>
     {
-        private readonly EmployeeRepository _repository;
+        private readonly IGenericRepository<Employee> _repository;
 
-        public DeleteEmployeeHandler(EmployeeRepository repository)
+        public DeleteEmployeeHandler(IGenericRepository<Employee> repository)
         {
             _repository = repository;
         }

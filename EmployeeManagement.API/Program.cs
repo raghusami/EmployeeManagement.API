@@ -1,8 +1,7 @@
-﻿using EmployeeManagement.Infrastructure.Repositories;
+﻿using EmployeeManagement.API.Validator;
+using EmployeeManagement.Infrastructure;
 using EmployeeManagement.Persistence;
-using MediatR;
 using Microsoft.EntityFrameworkCore;
-using System.Reflection;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -11,9 +10,7 @@ builder.Services.AddControllers();
 
 
 // ✅ Register MediatR and specify the assembly where handlers are located
-builder.Services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(typeof(EmployeeManagement.Application.Employees.Commands.CreateEmployeeCommand).Assembly));
-builder.Services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(typeof(EmployeeManagement.Application.Employees.Commands.UpdateEmployeeCommand).Assembly));
-builder.Services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(typeof(EmployeeManagement.Application.Employees.Commands.DeleteEmployeeCommand).Assembly));
+builder.Services.AddApplication();
 
 
 builder.Services.AddEndpointsApiExplorer();
@@ -24,7 +21,10 @@ builder.Services.AddDbContext<ApplicationDbContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
 // ✅ Register Repository (If you are using repositories)
-builder.Services.AddScoped<EmployeeRepository>();
+builder.Services.AddInfrastructure();
+
+// ✅ Register Validation (If you are using repositories)
+builder.Services.RegisterValidation();
 
 var app = builder.Build();
 
